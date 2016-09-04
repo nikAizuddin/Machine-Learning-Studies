@@ -66,7 +66,7 @@ public class HelloWorld {
 	train.setThreadCount(1);
         train.fixFlatSpot(false);
 
-        double targetMSE = 0.000000001;
+        double targetMSE = 0.00000001;
         System.out.println("... Training until MSE <= " +
                 String.format("%.17f", targetMSE) +
                 " please wait ...");
@@ -98,7 +98,11 @@ public class HelloWorld {
         System.out.println("--- TEST ---");
         for(MLDataPair pair: trainingSet) {
             final MLData output = network.compute(pair.getInput());
-            System.out.println("0 XOR 0 = " +
+            System.out.println(
+                String.format("%d", (int)pair.getInput().getData(0)) +
+                " XOR " +
+                String.format("%d", (int)pair.getInput().getData(1)) +
+                " = " +
                 String.format("%.17f", output.getData(0)) +
                 " (desired output = " +
                 String.format("%.17f", pair.getIdeal().getData(0))+")");
